@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm Wallet Demo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101827;color:#fff;font-family:system-ui,sans-serif;padding:22px}
+header{display:flex;align-items:center;gap:12px;margin:12px 0 28px}.logo{background:#20b486;color:#062b23;border-radius:16px;padding:12px;font-weight:900;font-size:22px}
+h1{font-size:23px;margin:0}.sub{color:#aab7ca;font-size:13px}.card{background:linear-gradient(135deg,#146b5a,#183c58);padding:24px;border-radius:24px;margin-bottom:20px}
+.label{color:#d1e9e3;font-size:14px}.balance{font-size:34px;font-weight:800;margin:12px 0;direction:ltr;text-align:right}
+.tag{display:inline-block;background:#ffe8a3;color:#503b00;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:bold}
+.notice{background:#29263a;border:1px solid #5c4c79;padding:12px;border-radius:12px;font-size:13px;color:#e4d9ff;line-height:1.8;margin-bottom:20px}
+h2{font-size:18px}input,button{width:100%;padding:14px;border-radius:12px;font-size:16px;margin:7px 0}
+input{background:#1b2638;border:1px solid #3b4b61;color:white}button{border:0;background:#20b486;color:#062b23;font-weight:800}
+.secondary{background:#29364b;color:white}.item{background:#1b2638;border-radius:12px;padding:13px;margin-top:10px;overflow-wrap:anywhere}
+.small{font-size:12px;color:#aab7ca}
+</style></head><body>
+<header><div class="logo">W</div><div><h1>Warm Wallet</h1><div class="sub">کیف پول نمایشی</div></div></header>
+<div class="card"><div class="label">موجودی نمایشی</div><div class="balance" id="balance">500,000.00</div><div><span class="tag">DEMO • غیرواقعی</span></div><p class="sub">واحد آزمایشی USDT — بدون ارزش مالی</p></div>
+<div class="notice">این برنامه صرفاً نمایشی است. موجودی و انتقال‌ها واقعی نیستند و در هیچ بلاک‌چینی ثبت نمی‌شوند.</div>
+<h2>ارسال نمایشی</h2><input id="recipient" placeholder="نام گیرنده یا شناسهٔ نمایشی"><input id="amount" type="number" min="0.01" step="0.01" placeholder="مقدار">
+<button onclick="send()">ثبت انتقال نمایشی</button><button class="secondary" onclick="receive()">نمایش اطلاعات دریافت</button>
+<h2>تاریخچه</h2><div id="history"><div class="item">موجودی اولیه <span class="small">۵۰۰٬۰۰۰ واحد نمایشی</span></div></div>
+<script>
+let balance=500000;const fmt=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function send(){const recipient=document.getElementById('recipient').value.trim();const amount=Number(document.getElementById('amount').value);
+if(!recipient){alert('نام گیرنده را وارد کن');return}if(!Number.isFinite(amount)||amount<=0||amount>balance){alert('مقدار معتبر نیست یا موجودی کافی نیست');return}
+balance-=amount;document.getElementById('balance').textContent=fmt(balance);const item=document.createElement('div');item.className='item';item.textContent='ارسال نمایشی: '+fmt(amount)+' واحد به '+recipient;document.getElementById('history').prepend(item);
+document.getElementById('recipient').value='';document.getElementById('amount').value='';}
+function receive(){alert('این کیف پول آدرس بلاک‌چینی ندارد. دریافت فقط نمایشی است و توکن واقعی دریافت نمی‌شود.');}
+</script></body></html>
